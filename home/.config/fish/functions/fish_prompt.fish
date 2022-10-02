@@ -89,6 +89,11 @@ function fish_prompt --description 'Write out the prompt'
 
     printf '%s ' (__fish_vcs_prompt)
 
+    # set CMD_DURATION to 0 for it to be defined
+    if not set -q CMD_DURATION
+        set -g CMD_DURATION 0
+    end
+
     if test $CMD_DURATION -gt 500
         set_color cyan
         echo $CMD_DURATION | awk '{if ($1 > 60000) printf "%.1fm", $1 / 60000; else printf "%.1fs", $1 / 1000}'
